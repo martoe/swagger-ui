@@ -11,6 +11,7 @@ class OperationView extends Backbone.View
   }
 
   initialize: (opts={}) ->
+    @swaggerUi = opts.swaggerUi
     @auths = opts.auths
 
     @
@@ -142,7 +143,7 @@ class OperationView extends Backbone.View
 
   addStatusCode: (statusCode) ->
     # Render status codes
-    statusCodeView = new StatusCodeView({model: statusCode, tagName: 'tr'})
+    statusCodeView = new StatusCodeView({model: statusCode, tagName: 'tr', swaggerUi: @swaggerUi})
     $('.operation-status', $(@el)).append statusCodeView.render().el
   
   submitOperation: (e) ->

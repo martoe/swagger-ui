@@ -6,6 +6,8 @@ class MainView extends Backbone.View
 
   initialize: (opts={}) ->
     # set up the UI for input
+    @swaggerUi = opts.swaggerUi
+    @model.specId = opts.swaggerUi.options.specId
     @model.auths = []
     for key, value of @model.securityDefinitions
       auth = {name: key, type: value.type, value: value}
@@ -73,9 +75,10 @@ class MainView extends Backbone.View
       id: 'resource_' + resource.id, 
       className: 'resource', 
       auths: auths,
+      swaggerUi: @swaggerUi,
       swaggerOptions: @options.swaggerOptions
     })
-    $('#resources').append resourceView.render().el
+    $('#resources_' + @model.specId).append resourceView.render().el
 
   clear: ->
     $(@el).html ''

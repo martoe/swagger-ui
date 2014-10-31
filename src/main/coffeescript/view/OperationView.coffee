@@ -123,6 +123,7 @@ class OperationView extends Backbone.View
         if !contentTypeModel.consumes
           contentTypeModel.consumes = 'multipart/form-data'
       param.type = type
+      param.isReadOnly = @model.isReadOnly
 
     responseContentTypeView = new ResponseContentTypeView({model: contentTypeModel})
     $('.response-content-type', $(@el)).append responseContentTypeView.render().el

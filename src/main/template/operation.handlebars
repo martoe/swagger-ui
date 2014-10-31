@@ -54,10 +54,16 @@
           <thead>
             <tr>
             <th style="width: 100px; max-width: 100px">Parameter</th>
-            <th style="width: 310px; max-width: 310px">Value</th>
+            <th style="width: 230px; max-width: 230px">Value</th>
             <th style="width: 200px; max-width: 200px">Description</th>
             <th style="width: 100px; max-width: 100px">Parameter Type</th>
-            <th style="width: 220px; max-width: 230px">Data Type</th>
+            <th style="width: 100px; max-width: 100px">Data Type</th>
+            <th style="width: 200px; max-width: 200px">Example value
+              {{#unless isReadOnly}}
+                <br/>
+                (<span style="cursor: pointer;" onclick="{{#each parameters}}$('[name=\'{{name}}\']').val('{{{x-mca-example}}}');{{/each}}">click to copy</span>)
+              {{/unless}}
+            </th>
             </tr>
           </thead>
           <tbody class="operation-params">

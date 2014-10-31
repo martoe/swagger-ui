@@ -1,5 +1,6 @@
 class ResourceView extends Backbone.View
   initialize: (opts={}) ->
+    @swaggerUi = opts.swaggerUi
     @auths = opts.auths
     if "" is @model.description 
       @model.description = null
@@ -41,6 +42,7 @@ class ResourceView extends Backbone.View
       model: operation,
       tagName: 'li',
       className: 'endpoint',
+      swaggerUi: @swaggerUi,
       swaggerOptions: @options.swaggerOptions,
       auths: @auths
     })

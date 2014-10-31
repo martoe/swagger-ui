@@ -82,7 +82,7 @@ class SwaggerUi extends Backbone.Router
   #  so it gets called when SwaggerApi completes loading
   render:() ->
     @showMessage('Finished Loading Resource Information. Rendering Swagger UI...')
-    @mainView = new MainView({model: @api, el: $('#' + @dom_id), swaggerOptions: @options}).render()
+    @mainView = new MainView({model: @api, el: $('#' + @dom_id), swaggerUi: @, swaggerOptions: @options}).render()
     @showMessage()
     switch @options.docExpansion
       when "full" then @expandAll()
@@ -102,6 +102,8 @@ class SwaggerUi extends Backbone.Router
       base + url
     else
       endOfPath = base.length
+      if base.indexOf("/index.html") > -1
+        endOfPath = Math.min(endOfPath, base.indexOf("/index.html"))
       if base.indexOf("?") > -1
         endOfPath = Math.min(endOfPath, base.indexOf("?"))
       if base.indexOf("#") > -1

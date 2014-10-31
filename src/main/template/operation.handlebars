@@ -71,6 +71,45 @@
           </tbody>
           </table>
           {{/if}}
+
+            <h4>Response Headers</h4>
+            <table class='fullwidth'>
+              <thead>
+                <tr>
+                <th style="width: 100px;">Header</th>
+                <th style="width: 100px;">Code</th>
+                <th style="width: 200px;">Description</th>
+                <th style="width: 100px;">Parameters</th>
+                </tr>
+              </thead>
+              <tbody class="response-headers">
+                {{#each operation.x-mca-errors}}
+                  <tr>
+                    <td>x-mca-errors</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+                {{#each operation.x-mca-warnings}}
+                  <tr>
+                    <td>x-mca-warnings</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+                {{#each operation.x-mca-infos}}
+                  <tr>
+                    <td>x-mca-infos</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+
           {{#if responseMessages}}
           <div style='margin:0;padding:0;display:inline'></div>
           <h4>Response Messages</h4>

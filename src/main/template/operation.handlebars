@@ -24,6 +24,17 @@
         <h4>Implementation Notes</h4>
         <p>{{{description}}}</p>
         {{/if}}
+        {{!-- these data are not modelled in the SwaggerOperation object, so we use the reference to the JSON model (the "operation" field) --}}
+        {{#if operation.externalDocs.url}}
+          <h4>Business Requirements</h4>
+          <a href="{{operation.externalDocs.url}}" target="_blank">
+            {{#if operation.externalDocs.description}}
+              {{operation.externalDocs.description}}
+            {{else}}
+              {{operation.operationId}}
+            {{/if}}
+          </a>
+        {{/if}}
         {{#oauth}}
         <div class="auth">
         <span class="api-ic ic-error"></span>{{/oauth}}

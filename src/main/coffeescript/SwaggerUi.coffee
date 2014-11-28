@@ -63,6 +63,10 @@ class SwaggerUi extends Backbone.Router
     @options.url = url
     @headerView.update(url)
 
+    # only enable the "tryout" function when running inside a webserver:
+    if url.indexOf("http") isnt 0
+      @options.supportedSubmitMethods = null
+
     @api = new SwaggerClient(@options)
     @api.build()    
 

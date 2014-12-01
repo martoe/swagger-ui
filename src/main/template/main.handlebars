@@ -1,8 +1,14 @@
 <div class='info' id='api_info_{{{specId}}}'>
-  <div class="info_title">{{basePath}}</div>
+  <div class="info_title">
+    {{#if info}}
+      {{info.title}} {{info.version}}
+    {{else}}
+      {{basePath}}
+    {{/if}}
+  </div>
   {{#if info}}
   <div class="info_description">
-    {{info.title}} {{info.version}}
+    Base path: {{basePath}}
     {{#if info.description}}<br/>{{{info.description}}}{{/if}}
   </div>
   {{#if info.termsOfService}}<div class="info_tos"><a href="{{info.termsOfService}}">Terms of service</a></div>{{/if}}

@@ -115,7 +115,10 @@ class OperationView extends Backbone.View
         schema = param.schema
         if schema and schema['$ref']
           ref = schema['$ref']
-          if ref.indexOf('#/definitions/') is 0
+          if typeof ref is "object"
+            # TODO ugly workaround for our HALResource thing:
+            type = ref["$ref"]
+          else if ref.indexOf('#/definitions/') is 0
             type = ref.substring('#/definitions/'.length)
           else
             type = ref

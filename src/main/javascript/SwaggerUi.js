@@ -158,6 +158,11 @@ window.SwaggerUi = Backbone.Router.extend({
         endOfPath = Math.min(endOfPath, base.indexOf('#'));
       }
 
+      // if the path ends in ".html", skip the last segment:
+      if (base.indexOf('.html', base.length - 5) !== -1){
+        endOfPath = Math.min(endOfPath, base.lastIndexOf('/'));
+      }
+
       base = base.substring(0, endOfPath);
 
       if (base.indexOf('/', base.length - 1 ) !== -1){

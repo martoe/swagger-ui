@@ -1,4 +1,4 @@
-<div class='info' id='api_info'>
+<div class='info' id='api_info_{{{specId}}}'>
   {{#if info}}
   <div class="info_title">{{info.title}}</div>
   <div class="info_description markdown">{{{info.description}}}</div>
@@ -13,8 +13,8 @@
   {{#if info.license}}<div class='info_license'><a href='{{info.license.url}}'>{{info.license.name}}</a></div>{{/if}}
   {{/if}}
 </div>
-<div class='container' id='resources_container'>
-  <ul id='resources'></ul>
+<div class='container' id='resources_container_{{{specId}}}'>
+  <ul class='resources' id='resources_{{{specId}}}'></ul>
 
   <div class="footer">
     <h4 style="color: #999">[ <span style="font-variant: small-caps">base url</span>: {{basePath}}
@@ -22,7 +22,7 @@
   , <span style="font-variant: small-caps" data-sw-translate>api version</span>: {{info.version}}
     {{/if}}]
     {{#if validatorUrl}}
-    <span style="float:right"><a href="{{validatorUrl}}/debug?url={{url}}"><img id="validator" src="{{validatorUrl}}?url={{url}}"></a>
+    <span style="float:right"><a href="{{validatorUrl}}/debug?url={{url}}"><img id="validator_{{{specId}}}" src="{{validatorUrl}}?url={{url}}"></a>
     </span>
     {{/if}}
     </h4>

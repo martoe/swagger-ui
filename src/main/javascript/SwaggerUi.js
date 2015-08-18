@@ -149,6 +149,9 @@ window.SwaggerUi = Backbone.Router.extend({
       return base + url;
     } else {
       var endOfPath = base.length;
+      if (base.indexOf('/index.html') > -1){
+        endOfPath = Math.min(endOfPath, base.indexOf('/index.html'));
+      }
 
       if (base.indexOf('?') > -1){
         endOfPath = Math.min(endOfPath, base.indexOf('?'));

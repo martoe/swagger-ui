@@ -43,7 +43,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
     // set up the UI for input
     this.model.auths = [];
-
+    this.model.specId = opts.router.options.specId;
     for (key in this.model.securityDefinitions) {
       value = this.model.securityDefinitions[key];
 
@@ -128,7 +128,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
       auths: auths,
       swaggerOptions: this.options.swaggerOptions
     });
-    $('#resources', this.el).append(resourceView.render().el);
+    $('#resources_' + this.model.specId, this.el).append(resourceView.render().el);
   },
 
   clear: function(){

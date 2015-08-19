@@ -96,6 +96,11 @@ window.SwaggerUi = Backbone.Router.extend({
     this.options.url = url;
     this.headerView.update(url);
 
+    // only enable the "tryout" function when running inside a webserver:
+    if (url && url.indexOf('http') !== 0) {
+      this.options.supportedSubmitMethods = null;
+    }
+
     this.api = new SwaggerClient(this.options);
   },
 

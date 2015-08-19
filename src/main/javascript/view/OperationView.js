@@ -216,6 +216,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         }
       }
       param.type = type;
+      param.isReadOnly = this.model.isReadOnly;
     }
     responseContentTypeView = new SwaggerUi.Views.ResponseContentTypeView({
       model: contentTypeModel,

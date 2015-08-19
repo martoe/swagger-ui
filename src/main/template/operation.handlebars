@@ -24,6 +24,17 @@
         <h4>Implementation Notes</h4>
         <div class="markdown">{{{description}}}</div>
         {{/if}}
+        {{!-- these data are not modelled in the SwaggerOperation object, so we use the reference to the JSON model (the "operation" field) --}}
+        {{#if operation.externalDocs.url}}
+          <h4>Business Requirements</h4>
+          <a href="{{operation.externalDocs.url}}" target="_blank">
+            {{#if operation.externalDocs.description}}
+              {{operation.externalDocs.description}}
+            {{else}}
+              {{operation.operationId}}
+            {{/if}}
+          </a>
+        {{/if}}
         {{#oauth}}
         <div class="auth">
         <span class="api-ic ic-error">{{/oauth}}
@@ -53,11 +64,19 @@
           <table class='fullwidth'>
           <thead>
             <tr>
-            <th style="width: 100px; max-width: 100px" data-sw-translate>Parameter</th>
-            <th style="width: 310px; max-width: 310px" data-sw-translate>Value</th>
-            <th style="width: 200px; max-width: 200px" data-sw-translate>Description</th>
-            <th style="width: 100px; max-width: 100px" data-sw-translate>Parameter Type</th>
-            <th style="width: 220px; max-width: 230px" data-sw-translate>Data Type</th>
+            <th style="width: 150px; max-width: 150px" data-sw-translate>Parameter</th>
+            {{#unless isReadOnly}}
+            <th style="width: 230px; max-width: 230px">Value</th>
+            {{/unless}}
+            <th style="width: 200px; max-width: 200px">Description</th>
+            <th style="width: 50px; max-width: 50px">Parameter Type</th>
+            <th style="width: 100px; max-width: 100px">Data Type</th>
+            <th style="width: 200px; max-width: 200px">Example value
+              {{#unless isReadOnly}}
+                <br/>
+                <button type="button" onclick="{{#each parameters}}$('[name=\'{{name}}\']').val('{{{x-mca-example}}}');{{/each}}">Copy values</button>
+              {{/unless}}
+            </th>
             </tr>
           </thead>
           <tbody class="operation-params">
@@ -65,6 +84,45 @@
           </tbody>
           </table>
           {{/if}}
+
+            <!--h4>Response Headers</h4>
+            <table class='fullwidth'>
+              <thead>
+                <tr>
+                <th style="width: 100px;">Header</th>
+                <th style="width: 100px;">Code</th>
+                <th style="width: 200px;">Description</th>
+                <th style="width: 100px;">Parameters</th>
+                </tr>
+              </thead>
+              <tbody class="response-headers">
+                {{#each operation.x-mca-errors}}
+                  <tr>
+                    <td>x-mca-errors</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+                {{#each operation.x-mca-warnings}}
+                  <tr>
+                    <td>x-mca-warnings</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+                {{#each operation.x-mca-infos}}
+                  <tr>
+                    <td>x-mca-infos</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.parameters}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table-->
+
           {{#if responseMessages}}
           <div style='margin:0;padding:0;display:inline'></div>
           <h4 data-sw-translate>Response Messages</h4>

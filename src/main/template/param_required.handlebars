@@ -1,4 +1,5 @@
 <td class='code required'><label for='{{valueId}}'>{{name}}</label></td>
+{{#unless isReadOnly}}
 <td>
 	{{#if isBody}}
 		{{#if isFile}}
@@ -23,8 +24,10 @@
 		{{/if}}
 	{{/if}}
 </td>
+{{/unless}}
 <td>
 	<strong><span class="markdown">{{{description}}}</span></strong>
 </td>
 <td>{{{paramType}}}</td>
 <td><span class="model-signature"></span></td>
+<td class="code" {{#unless isReadOnly}} style="cursor: pointer;" onclick="$('[name=\'{{name}}\']').val('{{{x-mca-example}}}');" {{/unless}} >{{{x-mca-example}}}</td>

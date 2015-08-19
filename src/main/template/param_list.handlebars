@@ -1,4 +1,5 @@
 <td class='code{{#if required}} required{{/if}}'><label for='{{valueId}}'>{{name}}</label></td>
+{{#unless isReadOnly}}
 <td>
   <select {{#isArray this}} multiple="multiple"{{/isArray}} class="parameter {{#if required}} required {{/if}}" name="{{name}}" id="{{valueId}}">
 
@@ -14,6 +15,8 @@
 
   </select>
 </td>
+{{/unless}}
 <td class="markdown">{{#if required}}<strong>{{/if}}{{{description}}}{{#if required}}</strong>{{/if}}</td>
 <td>{{{paramType}}}</td>
 <td><span class="model-signature"></span></td>
+<td class="code" {{#unless isReadOnly}} style="cursor: pointer;" onclick="$('[name=\'{{name}}\']').val('{{{x-mca-example}}}');" {{/unless}} >{{{x-mca-example}}}</td>
